@@ -19,6 +19,7 @@ const AgregarPokemon = ({onAgregarPokemon}) => {
         e.preventDefault()
                 if(pokemon.nombre.length>0){
             onAgregarPokemon(pokemon)
+            /* 
             setPokemon({
                 nombre:"",
                 tipo:"",
@@ -28,6 +29,7 @@ const AgregarPokemon = ({onAgregarPokemon}) => {
                 ataque:"giro bola",
                 adoptado:false
            })
+           */
         }else{
             window.alert("Inserta al menos un nombre")
         }
@@ -40,7 +42,7 @@ const AgregarPokemon = ({onAgregarPokemon}) => {
         <div className="container mt-3 mb-5">
             <h2>Registro de pokemon</h2>
             <p>Solo puedes registrar un pokemon por tipo (ej. solo un pikachu, etc)</p>
-        <form method="POST" action="/enviarInfo" onSubmit={handleSubmit}>
+        <form action="" onSubmit={handleSubmit}>
             <div className="row mb-5">
             <div className="col-sm-6">
                 <div className="form-group">

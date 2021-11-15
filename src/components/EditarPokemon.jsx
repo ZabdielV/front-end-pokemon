@@ -19,15 +19,7 @@ const EditarPokemon = ({onEditarPokemon}) => {
     e.preventDefault()
     if(pokemon.nombre.length>0){
         onEditarPokemon(pokemon)
-setPokemon({
-    nombre:"",
-    tipo:"",
-    evolucion:"",
-    peso:"",
-    descripcion:"",
-    ataque:"giro bola",
-    adoptado:false
-})
+
 }else{
 window.alert("Inserta al menos un nombre")
 }

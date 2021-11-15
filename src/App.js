@@ -52,13 +52,21 @@ const [entrenadores,setEntrenadores]=useState([{
 
 //Agregar pokemon
 const addPokemon= async(pokemon)=>{
-
+  const prefiltro= pokemones.filter((poke)=>{
+    return poke.nombre===pokemon.nombre
+    })
+    
+    if(prefiltro.length>0){
+      window.alert("Pokemon ya existe, error")
+    }else{
+      setPokemones([...pokemones,pokemon])
+      window.alert("Pokemon agregado")
+    }
   //Agrega en base de datos
     
    // const data=await res.json()
     
-   setPokemones([...pokemones,pokemon])
-   window.alert("Pokemon agregado")
+
     }
 
     const editarPokemon= async(pokemon)=>{
@@ -83,16 +91,57 @@ const addPokemon= async(pokemon)=>{
        window.alert("Pokemon editado")
         }
         
-        const eliminarPokemon=async(nombre)=>{
+    const eliminarPokemon=async(nombre)=>{
 
           /* */
           setPokemones(pokemones.filter((poke)=>{
             return poke.nombre!==nombre
           }))
-          window.alert("Pokemon eliminado")
+          //window.alert("Pokemon eliminado")
         }
-            
+    
+//Agregar pokemon
+const addEntrenador= async(entrenador)=>{
 
+  //Agrega en base de datos
+    
+   // const data=await res.json()
+   const prefiltro= entrenadores.filter((entre)=>{
+    return entre.nombre===entrenador.nombre
+    })
+    
+    if(prefiltro.length>0){
+      window.alert("Entrenador ya existe, error")
+    }else{
+      setEntrenadores([...entrenadores,entrenador])
+      window.alert("Entrenador agregado")
+    }
+
+    }        
+const addPokemonEnEntrenador=async(entrenadorNombre,pokemonNombre)=>{
+  const prefiltro= entrenadores.filter((entre)=>{
+    return entre.nombre===entrenadorNombre
+    })
+    const prefiltro02= pokemones.filter((poke)=>{
+      return poke.nombre===pokemonNombre
+      })
+    
+    if(prefiltro.length>0 &&prefiltro02.length>0){
+    const miEntrenador=prefiltro[0]
+    const miPokemon=prefiltro02[0]
+    const pokemonesActuales=miEntrenador.pokemones
+    const nuevosPokemones=[...pokemonesActuales,miPokemon]
+      miEntrenador.pokemones=nuevosPokemones
+      const arregloEntrenadores=entrenadores.filter((e)=>{
+        return e.nombre!==entrenadorNombre
+      })
+      setEntrenadores([...arregloEntrenadores,miEntrenador])
+      //Actualizar en base
+     eliminarPokemon(pokemonNombre)
+    }else{
+      window.alert("Entrenador no existe o pokemon no existen, error")
+    }
+}
   return (
     <>
    <Header/>
@@ -101,8 +150,8 @@ const addPokemon= async(pokemon)=>{
    <EditarPokemon onEditarPokemon={editarPokemon}/>
     <EliminarPokemon onEliminarPokemon={eliminarPokemon}/>
     <VerEntrenadores entrenadores={entrenadores}/>
-    <AgregarEntrenador/>
-    <EditarEntrenador/>
+    <AgregarEntrenador onAgregarEntrenador={addEntrenador}/>
+    <EditarEntrenador onEditar={addPokemonEnEntrenador}/>
     </>
   )
 }
