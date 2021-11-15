@@ -17,6 +17,7 @@ const VerPokemones = ({pokemones}) => {
                 <h3>Nombre: {pokemon.nombre}</h3>
                 <h3>tipo: {pokemon.tipo}</h3>
                 <h3>peso (kg): {pokemon.peso}</h3>
+                <h3>Ataque: {pokemon.ataque}</h3>
               </div>
               <div className="card-footer">
               </div>

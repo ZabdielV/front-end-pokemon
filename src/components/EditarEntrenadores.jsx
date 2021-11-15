@@ -33,18 +33,19 @@ window.alert("Inserta al menos un nombre en ambos campos")
             <div className="row mb-5">
             <div className="col-sm-6">
                 <div className="form-group">
-                    <label htmlFor="namePoke">Nombre pokemon</label>
-                    <input type="text" className="form-control" name="namePoke" id="namePoke"
-                        placeholder="Introduce nombre pokemon" onChange={handleInput02}/>
-                </div>
-            </div>
-            <div className="col-sm-6">
-                <div className="form-group">
                     <label htmlFor="nameEntrenador">Nombre entrenador</label>
                     <input type="text" className="form-control" name="nameEntrenador" id="nameEntrenador"
                         placeholder="Introduce nombre entrenador" onChange={handleInput01}/>
                 </div>
             </div>
+            <div className="col-sm-6">
+                <div className="form-group">
+                    <label htmlFor="namePoke">Nombre pokemon</label>
+                    <input type="text" className="form-control" name="namePoke" id="namePoke"
+                        placeholder="Introduce nombre pokemon" onChange={handleInput02}/>
+                </div>
+            </div>
+
 
             <div className="row mt-2">
                 <div className="col-6">

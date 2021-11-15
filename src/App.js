@@ -14,19 +14,22 @@ const App = () => {
     nombre:"Pikachu",
     tipo:"Rayo",
     peso:10,
-    adoptado:false
+    adoptado:false,
+    ataque:"giro bola"
 },
 {
     nombre:"Bulbasor",
     tipo:"Agua",
     peso:5,
-    adoptado:false
+    adoptado:false,
+    ataque:"giro bola"
 },
 {
     nombre:"Charmander",
     tipo:"Fuego",
     peso:"10kg",
-    adoptado:false
+    adoptado:false,
+    ataque:"giro bola"
 }
 ])
 const [entrenadores,setEntrenadores]=useState([{
@@ -116,9 +119,9 @@ const addEntrenador= async(entrenador)=>{
       setEntrenadores([...entrenadores,entrenador])
       window.alert("Entrenador agregado")
     }
-
     }        
 const addPokemonEnEntrenador=async(entrenadorNombre,pokemonNombre)=>{
+  //console.log(entrenadorNombre,pokemonNombre)
   const prefiltro= entrenadores.filter((entre)=>{
     return entre.nombre===entrenadorNombre
     })
