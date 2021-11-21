@@ -1,11 +1,12 @@
 import React from 'react'
+import NavBar from './components/NavBar'
 import Header from './components/Header'
-import {useState,useEffect} from 'react'
+import {useState} from 'react'
 import VerPokemones from './components/VerPokemones'
 import AgregarPokemon from './components/AgregarPokemon'
 import EditarPokemon from './components/EditarPokemon'
 import EliminarPokemon from './components/EliminarPokemon'
-
+import {Routes,Route,Link,Outlet} from 'react-router-dom';
 import VerEntrenadores from './components/VerEntrenadores'
 import AgregarEntrenador from './components/AgregarEntrenador'
 import EditarEntrenador from './components/EditarEntrenadores'
@@ -138,6 +139,7 @@ const addPokemonEnEntrenador=async(entrenadorNombre,pokemonNombre)=>{
       const arregloEntrenadores=entrenadores.filter((e)=>{
         return e.nombre!==entrenadorNombre
       })
+      //Actualizar o eliminar entrenador
       setEntrenadores([...arregloEntrenadores,miEntrenador])
       //Actualizar en base
      eliminarPokemon(pokemonNombre)
@@ -147,14 +149,17 @@ const addPokemonEnEntrenador=async(entrenadorNombre,pokemonNombre)=>{
 }
   return (
     <>
+   <NavBar/>
    <Header/>
-   <VerPokemones pokemones={pokemones}/>
-   <AgregarPokemon onAgregarPokemon={addPokemon}/>
-   <EditarPokemon onEditarPokemon={editarPokemon}/>
-    <EliminarPokemon onEliminarPokemon={eliminarPokemon}/>
-    <VerEntrenadores entrenadores={entrenadores}/>
-    <AgregarEntrenador onAgregarEntrenador={addEntrenador}/>
-    <EditarEntrenador onEditar={addPokemonEnEntrenador}/>
+   <VerPokemones pokemones={pokemones}/> 
+  <AgregarPokemon onAgregarPokemon={addPokemon}/>
+  <EditarPokemon onEditarPokemon={editarPokemon}/>
+  <EliminarPokemon onEliminarPokemon={eliminarPokemon}/>
+
+   <VerEntrenadores entrenadores={entrenadores}/>
+  <AgregarEntrenador onAgregarEntrenador={addEntrenador}/>
+  <EditarEntrenador onEditar={addPokemonEnEntrenador}/>
+
     </>
   )
 }

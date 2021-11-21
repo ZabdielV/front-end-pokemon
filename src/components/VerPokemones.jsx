@@ -27,7 +27,7 @@ const VerPokemones = ({pokemones}) => {
     })
 
     return (
-        <div className="container mt-3 mb-5" id="pokemones">
+        <div className="container mt-3 mb-5 mt-10" id="pokemones">
             <h2>Los pokemones en adopcion son:</h2>
             <div className="row">
                 {filtradoPokemones}

@@ -32,18 +32,12 @@ p{
   background-repeat: no-repeat;
   background-size: cover;
 
-      /*
-  background: -moz-linear-gradient(45deg, rgba(2, 142, 236, 0.295), rgba(13, 17, 198, 0.69) 100%);
-  background: -webkit-linear-gradient(45deg, rgba(8, 202, 236, 0.295), rgba(13, 17, 198, 0.69) 100%);
-  background: linear-gradient(to 45deg, rgba(5, 203, 238, 0.6), rgba(13, 17, 198, 0.69) 100%);
-
-  */
   
 }
 
 .titulo h1{
   text-align: center;
-  margin-top: 10rem;
+  margin-top: 15rem;
 }
 
 h2{

@@ -54,7 +54,6 @@ const AgregarEntrenador = ({onAgregarEntrenador}) => {
                     placeholder="Introduce su proxima evolucion" onChange={handleInput}/>
             </div>
         </div>
-
         <div className="col-sm-6">
             <div className="form-group">
                 <label htmlFor="edad">Edad : </label>
