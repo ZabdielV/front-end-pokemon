@@ -28,18 +28,39 @@ p{
   height: 100vh;
 
   /* Center and scale the image nicely */
-  background-position: center;
+  
   background-repeat: no-repeat;
   background-size: cover;
 
   
 }
 
+
+
+.pokemon-settings .card-body{
+  text-shadow: -3px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  height: 15rem;
+ color: white;
+ background-position: center;
+ background-repeat: no-repeat;
+ background-size: cover;
+}
+
 .titulo h1{
   text-align: center;
-  margin-top: 15rem;
+
 }
 
 h2{
   text-align: center;
 }
+
+.bigger-font-size{
+  font-size: 1.5rem;
+}
+
+
+.bigger-font-size a{
+  font-size: 1.5rem;
+}
+

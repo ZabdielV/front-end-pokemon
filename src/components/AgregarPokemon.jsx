@@ -7,6 +7,8 @@ const AgregarPokemon = ({onAgregarPokemon}) => {
         evolucion:"",
         peso:"",
         descripcion:"",
+        image:""
+        ,
         ataque:"giro bola",
         adoptado:false
     })
@@ -60,6 +62,11 @@ const AgregarPokemon = ({onAgregarPokemon}) => {
                     <input type="text" className="form-control" name="evolucion" id="evolucion"
                         placeholder="Introduce su proxima evolucion" onChange={handleInput}/>
                 </div>
+                <div className="form-group">
+                    <label htmlFor="image">Link de la imagen del pokemon</label>
+                    <input type="text" className="form-control" name="image" id="image"
+                        placeholder="Introduce un link del recurso" onChange={handleInput}/>
+                </div>
             </div>
 
             <div className="col-sm-6">
@@ -83,7 +90,6 @@ const AgregarPokemon = ({onAgregarPokemon}) => {
                     <option value="Cuerpo pesado">cuerpo pesado</option>
                 </select>
                 </div>
-
             </div>
 
             <div className="row mt-2">

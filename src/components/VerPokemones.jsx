@@ -1,28 +1,16 @@
 import React from 'react'
-import {useState,useEffect} from 'react'
+import Pokemon from './Pokemon'
 const VerPokemones = ({pokemones}) => {
 
     const filtrado=pokemones.filter((pokemon)=>{
       return pokemon.adoptado !==true
     })
 
+ 
+
     const filtradoPokemones = filtrado.map((pokemon,i)=>{
         return (
-            <div className="col-sm-4" key={i}>
-            <div className="card">
-              <div className="card-header">
-                <h3>Pokemon #{i+1}</h3>
-              </div>
-              <div className="card-body">
-                <h3>Nombre: {pokemon.nombre}</h3>
-                <h3>tipo: {pokemon.tipo}</h3>
-                <h3>peso (kg): {pokemon.peso}</h3>
-                <h3>Ataque: {pokemon.ataque}</h3>
-              </div>
-              <div className="card-footer">
-              </div>
-            </div>
-          </div>
+            <Pokemon keyProp={i} pokemon={pokemon}/>
         )
     })
 

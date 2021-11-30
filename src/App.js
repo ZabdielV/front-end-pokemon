@@ -16,6 +16,7 @@ const App = () => {
     tipo:"Rayo",
     peso:10,
     adoptado:false,
+    image:"https://as01.epimg.net/epik/imagenes/2018/11/16/portada/1542384053_864693_1542384302_noticia_normal.jpg",
     ataque:"giro bola"
 },
 {
@@ -23,6 +24,7 @@ const App = () => {
     tipo:"Agua",
     peso:5,
     adoptado:false,
+    image:"https://assets.pokemon.com/assets/cms2/img/pokedex/full/001.png",
     ataque:"giro bola"
 },
 {
@@ -30,6 +32,7 @@ const App = () => {
     tipo:"Fuego",
     peso:"10kg",
     adoptado:false,
+    image:"https://img.joomcdn.net/c81c9194e48d20aa5e1fb28bc82bad20bd73b708_original.jpeg",
     ataque:"giro bola"
 }
 ])
@@ -40,7 +43,7 @@ const [entrenadores,setEntrenadores]=useState([{
   edad:17,
   pokemones:[]
 },{
-  nombre:"Bruck",
+  nombre:"Brock",
   direccion:"asdsada",
   correo:"hola@hotmail.com",
   edad:18,
@@ -133,9 +136,15 @@ const addPokemonEnEntrenador=async(entrenadorNombre,pokemonNombre)=>{
     if(prefiltro.length>0 &&prefiltro02.length>0){
     const miEntrenador=prefiltro[0]
     const miPokemon=prefiltro02[0]
-    const pokemonesActuales=miEntrenador.pokemones
-    const nuevosPokemones=[...pokemonesActuales,miPokemon]
-      miEntrenador.pokemones=nuevosPokemones
+
+    //const pokemonesActuales=miEntrenador.pokemones
+    //const nuevosPokemones=[...pokemonesActuales,miPokemon]
+
+    
+      //miEntrenador.pokemones=nuevosPokemones
+
+      miEntrenador.pokemones=[...miEntrenador.pokemones,miPokemon]
+
       const arregloEntrenadores=entrenadores.filter((e)=>{
         return e.nombre!==entrenadorNombre
       })
