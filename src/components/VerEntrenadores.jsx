@@ -9,7 +9,7 @@ const VerEntrenadores = ({entrenadores}) => {
                 <div className="card" key={i}>
                   <div className="card-header">
                   </div>
-                  <div className="card-body">
+                  <div className="card-body poke" style={{backgroundImage:`url(${poke.img})`}}>
                     <h3>Nombre: {poke.nombre}</h3>
                     <p>ataque: {poke.ataque}</p>
                     <p>tipo: {poke.tipo}</p>
