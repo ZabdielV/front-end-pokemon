@@ -11,7 +11,7 @@ const [esSeleccionado,setSeleccionado]=useState(false);
 
 
     return (
-        <div className="col-sm-4" key={keyProp}>
+        <div className="col-sm-4">
         <div className="card pokemon-settings">
           <div className="card-header">
             <h3>Pokemon #{keyProp+1}</h3>

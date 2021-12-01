@@ -44,7 +44,7 @@ const VerEntrenadores = ({entrenadores}) => {
           <div className="container mt-3 mb-5 mt-10" id="Entrenadores">
               <h2>Los entrenadores actuales son:</h2>
               <div className="row">
-                  {misEntrenadores}
+                  {misEntrenadores.length>0?misEntrenadores:<h2>Actualmente no hay entrenadores disponibles</h2>}
               </div>
           </div>
       )

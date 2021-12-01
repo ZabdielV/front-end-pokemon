@@ -1,7 +1,7 @@
 import React from 'react'
 import NavBar from './components/NavBar'
 import Header from './components/Header'
-import {useState} from 'react'
+import {useState,useEffect} from 'react'
 import VerPokemones from './components/VerPokemones'
 import AgregarPokemon from './components/AgregarPokemon'
 import EditarPokemon from './components/EditarPokemon'
@@ -11,51 +11,34 @@ import VerEntrenadores from './components/VerEntrenadores'
 import AgregarEntrenador from './components/AgregarEntrenador'
 import EditarEntrenador from './components/EditarEntrenadores'
 const App = () => {
-  const [pokemones,setPokemones]=useState([{
-    nombre:"Pikachu",
-    tipo:"Rayo",
-    peso:10,
-    adoptado:false,
-    image:"https://as01.epimg.net/epik/imagenes/2018/11/16/portada/1542384053_864693_1542384302_noticia_normal.jpg",
-    ataque:"giro bola"
-},
-{
-    nombre:"Bulbasor",
-    tipo:"Agua",
-    peso:5,
-    adoptado:false,
-    image:"https://assets.pokemon.com/assets/cms2/img/pokedex/full/001.png",
-    ataque:"giro bola"
-},
-{
-    nombre:"Charmander",
-    tipo:"Fuego",
-    peso:"10kg",
-    adoptado:false,
-    image:"https://img.joomcdn.net/c81c9194e48d20aa5e1fb28bc82bad20bd73b708_original.jpeg",
-    ataque:"giro bola"
+  const [pokemones,setPokemones]=useState([])
+const [entrenadores,setEntrenadores]=useState([])
+
+//READ
+useEffect(()=>{
+  //console.log("Leyendo de base de datos")
+  const readData= async ()=>{
+    try{
+      const resultado = await fetchPokemones()
+      setPokemones(resultado)
+    }
+
+    catch(e){
+      console.log(e)
+    }
+    //console.log(resultado)
+    
+  }
+  readData()
+},[])
+const fetchPokemones=async()=>{
+  const res=await fetch('http://localhost:8080/verPokemones')
+  const data=await res.json()
+  //console.log(data);
+  return data
 }
-])
-const [entrenadores,setEntrenadores]=useState([{
-  nombre:"Ash",
-  direccion:"Pueblo paleta",
-  correo:"hola@hotmail.com",
-  edad:17,
-  pokemones:[]
-},{
-  nombre:"Brock",
-  direccion:"asdsada",
-  correo:"hola@hotmail.com",
-  edad:18,
-  pokemones:[{
-    nombre:"Raichu",
-    tipo:"Rayo",
-    ataque:"giro bola",
-    peso:12,
-    adoptado:true
-}]
-}
-])
+
+//CREATE
 
 //Agregar pokemon
 const addPokemon= async(pokemon)=>{
@@ -66,16 +49,23 @@ const addPokemon= async(pokemon)=>{
     if(prefiltro.length>0){
       window.alert("Pokemon ya existe, error")
     }else{
+
+      const res =await fetch('http://localhost:8080/registrarPokemon',{
+        method:'POST',
+        headers:{
+          'Content-type':'application/json'
+        },
+        body: JSON.stringify(pokemon)
+      })
+      const respuestaServidor=await res.json()
+      console.log(respuestaServidor)
+
       setPokemones([...pokemones,pokemon])
       window.alert("Pokemon agregado")
     }
-  //Agrega en base de datos
-    
-   // const data=await res.json()
-    
-
     }
 
+    //UPDATE
     const editarPokemon= async(pokemon)=>{
       const prefiltro= pokemones.filter((poke)=>{
       return poke.nombre===pokemon.nombre
@@ -85,29 +75,109 @@ const addPokemon= async(pokemon)=>{
         const filtro=pokemones.filter((poke)=>{
           return poke.nombre!==pokemon.nombre
         })
+
+        const res =await fetch('http://localhost:8080/registrarPokemon',{
+        method:'POST',
+        headers:{
+          'Content-type':'application/json'
+        },
+        body: JSON.stringify(pokemon)
+      })
+
+      const respuestaServidor=await res.json()
+      console.log(respuestaServidor)
+
         setPokemones([...filtro,pokemon])
+        window.alert("Pokemon editado")
       }else{
         window.alert("No existe el pokemon")
       }
 
        
     
-      //Agrega en base de datos
-        
-       // const data=await res.json()
-       window.alert("Pokemon editado")
+     
+    
         }
         
+    //DELETE
     const eliminarPokemon=async(nombre)=>{
+      const prefiltro= pokemones.filter((poke)=>{
+        return poke.nombre===nombre
+        })
+        
+        if(prefiltro.length>0){
 
+          const res =await fetch('http://localhost:8080/registrarPokemon',{
+            method:'POST',
+            headers:{
+              'Content-type':'application/json'
+            },
+            body: JSON.stringify({pokemonEliminado:nombre})
+          })
+    
+          const respuestaServidor=await res.json()
+          console.log(respuestaServidor)
+
+          setPokemones(pokemones.filter((poke)=>{
+            return poke.nombre!==nombre
+          }))
+          window.alert("Pokemon eliminado")
+
+
+
+
+        }else{
+          window.alert("Pokemon no existe")
+        }
+
+        }
+
+
+        const editarPokemonesEnBase=async(nombre)=>{
+
+          const res =await fetch('http://localhost:8080/registrarPokemon',{
+            method:'POST',
+            headers:{
+              'Content-type':'application/json'
+            },
+            body: JSON.stringify({pokemonEliminado:nombre})
+          })
+    
+          const respuestaServidor=await res.json()
+          console.log(respuestaServidor)
           /* */
           setPokemones(pokemones.filter((poke)=>{
             return poke.nombre!==nombre
           }))
-          //window.alert("Pokemon eliminado")
+          
         }
     
-//Agregar pokemon
+
+//READ Entrenadores
+useEffect(()=>{
+  //console.log("Leyendo de base de datos")
+  const readData= async ()=>{
+    try{
+      const resultado = await fetchEntrenadores()
+      //console.log(resultado)
+      setEntrenadores(resultado)
+    }
+    catch(e){
+      console.log(e)
+    }
+  }
+  readData()
+},[])
+const fetchEntrenadores=async()=>{
+  const res=await fetch('http://localhost:8080/verEntrenadores')
+  const data=await res.json()
+  //console.log(data);
+  return data
+}
+
+
+
+//Agregar entrenador
 const addEntrenador= async(entrenador)=>{
 
   //Agrega en base de datos
@@ -120,6 +190,16 @@ const addEntrenador= async(entrenador)=>{
     if(prefiltro.length>0){
       window.alert("Entrenador ya existe, error")
     }else{
+      const res =await fetch('http://localhost:8080/registrarPokemon',{
+        method:'POST',
+        headers:{
+          'Content-type':'application/json'
+        },
+        body: JSON.stringify(entrenador)
+      })
+      const respuestaServidor=await res.json()
+      console.log(respuestaServidor)
+
       setEntrenadores([...entrenadores,entrenador])
       window.alert("Entrenador agregado")
     }
@@ -148,10 +228,25 @@ const addPokemonEnEntrenador=async(entrenadorNombre,pokemonNombre)=>{
       const arregloEntrenadores=entrenadores.filter((e)=>{
         return e.nombre!==entrenadorNombre
       })
+      //Actualizar en base
+      const res =await fetch('http://localhost:8080/registrarPokemon',{
+        method:'POST',
+        headers:{
+          'Content-type':'application/json'
+        },
+        body: JSON.stringify({
+          nombreEntrenador:entrenadorNombre,
+          listaNuevaPokemones:miEntrenador.pokemones
+        })
+      })
+      const respuestaServidor=await res.json()
+      console.log(respuestaServidor)
+
       //Actualizar o eliminar entrenador
       setEntrenadores([...arregloEntrenadores,miEntrenador])
-      //Actualizar en base
-     eliminarPokemon(pokemonNombre)
+    
+
+      editarPokemonesEnBase(pokemonNombre)
     }else{
       window.alert("Entrenador no existe o pokemon no existen, error")
     }
