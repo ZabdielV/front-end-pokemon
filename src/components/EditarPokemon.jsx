@@ -7,7 +7,7 @@ const EditarPokemon = ({onEditarPokemon}) => {
         evolucion:"",
         peso:"",
         descripcion:"",
-        image:"",
+        img:"",
         ataque:"giro bola",
         adoptado:false
     })
@@ -50,8 +50,8 @@ window.alert("Inserta al menos un nombre")
                         placeholder="Introduce su proxima evolucion" onChange={handleInput}/>
                 </div>
                 <div className="form-group">
-                    <label htmlFor="image">Link de la imagen del pokemon</label>
-                    <input type="text" className="form-control" name="image" id="image"
+                    <label htmlFor="img">Link de la imagen del pokemon</label>
+                    <input type="text" className="form-control" name="img" id="img"
                         placeholder="Introduce un link del recurso" onChange={handleInput}/>
                 </div>
             </div>

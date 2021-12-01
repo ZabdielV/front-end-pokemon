@@ -32,7 +32,7 @@ useEffect(()=>{
   readData()
 },[])
 const fetchPokemones=async()=>{
-  const res=await fetch('http://localhost:8080/verPokemones')
+  const res=await fetch('http://localhost:8081/pokemones/verPokemones')
   const data=await res.json()
   //console.log(data);
   return data
@@ -49,8 +49,7 @@ const addPokemon= async(pokemon)=>{
     if(prefiltro.length>0){
       window.alert("Pokemon ya existe, error")
     }else{
-
-      const res =await fetch('http://localhost:8080/registrarPokemon',{
+      const res =await fetch('http://localhost:8081/pokemones/agregarPokemon',{
         method:'POST',
         headers:{
           'Content-type':'application/json'
@@ -59,7 +58,7 @@ const addPokemon= async(pokemon)=>{
       })
       const respuestaServidor=await res.json()
       console.log(respuestaServidor)
-
+      console.log(pokemon)
       setPokemones([...pokemones,pokemon])
       window.alert("Pokemon agregado")
     }
@@ -76,7 +75,7 @@ const addPokemon= async(pokemon)=>{
           return poke.nombre!==pokemon.nombre
         })
 
-        const res =await fetch('http://localhost:8080/registrarPokemon',{
+        const res =await fetch('http://localhost:8081/pokemones/actualizarPokemon',{
         method:'POST',
         headers:{
           'Content-type':'application/json'
@@ -107,7 +106,7 @@ const addPokemon= async(pokemon)=>{
         
         if(prefiltro.length>0){
 
-          const res =await fetch('http://localhost:8080/registrarPokemon',{
+          const res =await fetch('http://localhost:8081/pokemones/eliminarPokemon',{
             method:'POST',
             headers:{
               'Content-type':'application/json'
@@ -135,7 +134,7 @@ const addPokemon= async(pokemon)=>{
 
         const editarPokemonesEnBase=async(nombre)=>{
 
-          const res =await fetch('http://localhost:8080/registrarPokemon',{
+          const res =await fetch('http://localhost:8081/pokemones/eliminarPokemon',{
             method:'POST',
             headers:{
               'Content-type':'application/json'
@@ -159,7 +158,7 @@ useEffect(()=>{
   const readData= async ()=>{
     try{
       const resultado = await fetchEntrenadores()
-      //console.log(resultado)
+      console.log(resultado)
       setEntrenadores(resultado)
     }
     catch(e){
@@ -169,7 +168,7 @@ useEffect(()=>{
   readData()
 },[])
 const fetchEntrenadores=async()=>{
-  const res=await fetch('http://localhost:8080/verEntrenadores')
+  const res=await fetch('http://localhost:8081/entrenadores/verEntrenadores')
   const data=await res.json()
   //console.log(data);
   return data
@@ -190,7 +189,7 @@ const addEntrenador= async(entrenador)=>{
     if(prefiltro.length>0){
       window.alert("Entrenador ya existe, error")
     }else{
-      const res =await fetch('http://localhost:8080/registrarPokemon',{
+      const res =await fetch('http://localhost:8081/entrenadores/agregarEntrenador',{
         method:'POST',
         headers:{
           'Content-type':'application/json'
@@ -223,20 +222,20 @@ const addPokemonEnEntrenador=async(entrenadorNombre,pokemonNombre)=>{
     
       //miEntrenador.pokemones=nuevosPokemones
 
-      miEntrenador.pokemones=[...miEntrenador.pokemones,miPokemon]
+      miEntrenador.pokemons=[...miEntrenador.pokemons,miPokemon]
 
       const arregloEntrenadores=entrenadores.filter((e)=>{
         return e.nombre!==entrenadorNombre
       })
       //Actualizar en base
-      const res =await fetch('http://localhost:8080/registrarPokemon',{
+      const res =await fetch('http://localhost:8081/entrenadores/actualizarEntrenadores',{
         method:'POST',
         headers:{
           'Content-type':'application/json'
         },
         body: JSON.stringify({
           nombreEntrenador:entrenadorNombre,
-          listaNuevaPokemones:miEntrenador.pokemones
+          listaNuevaPokemones:miEntrenador.pokemons
         })
       })
       const respuestaServidor=await res.json()
@@ -244,9 +243,8 @@ const addPokemonEnEntrenador=async(entrenadorNombre,pokemonNombre)=>{
 
       //Actualizar o eliminar entrenador
       setEntrenadores([...arregloEntrenadores,miEntrenador])
-    
-
       editarPokemonesEnBase(pokemonNombre)
+      window.alert("Se agrego pokemon en base")
     }else{
       window.alert("Entrenador no existe o pokemon no existen, error")
     }

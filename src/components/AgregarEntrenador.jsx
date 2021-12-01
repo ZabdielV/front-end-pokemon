@@ -6,7 +6,7 @@ const AgregarEntrenador = ({onAgregarEntrenador}) => {
         direccion:"",
         correo:"",
         edad:0,
-        pokemones:[]
+        pokemons:[]
     })
     const handleInput=(e)=>{
         const {value,name}=e.target

@@ -4,15 +4,17 @@ const VerEntrenadores = ({entrenadores}) => {
 
   
       const misEntrenadores = entrenadores.map((entrenador,i)=>{
-          const pokemonesEnEntrenador=entrenador.pokemones.map((poke,i)=>{
+          const pokemonesEnEntrenador=entrenador.pokemons.map((poke,i)=>{
             return (
                 <div className="card" key={i}>
                   <div className="card-header">
                   </div>
                   <div className="card-body">
                     <h3>Nombre: {poke.nombre}</h3>
-                    <h3>ataque: {poke.ataque}</h3>
-                    <h3>tipo: {poke.tipo}</h3>
+                    <p>ataque: {poke.ataque}</p>
+                    <p>tipo: {poke.tipo}</p>
+                    <p>peso (kg) : {poke.peso}</p>
+                    <p>descripción : {poke.descripcion}</p>
                   </div>
                   <div className="card-footer">
                   </div>
@@ -25,13 +27,13 @@ const VerEntrenadores = ({entrenadores}) => {
                 <div className="card-header">
                   <h3>Entrenador #{i+1}</h3>
                 </div>
-                <div className="card-body">
+                <div className="card-body bg-blue">
                   <h3>Nombre: {entrenador.nombre}</h3>
-                  <h3>Direccion: {entrenador.direccion}</h3>
-                  <h3>Correo: {entrenador.correo}</h3>
-                  <h3>Edad: {entrenador.edad}</h3>
-                  <h3>Mis pokemones:</h3>
-                  {pokemonesEnEntrenador}
+                  <p>Direccion: {entrenador.direccion}</p>
+                  <p>Correo: {entrenador.correo}</p>
+                  <p>Edad: {entrenador.edad}</p>
+                  <p>Mis pokemones:</p>
+                  {pokemonesEnEntrenador.length>0?pokemonesEnEntrenador:<p>No hay pokemones</p>}
                 </div>
                 <div className="card-footer">
                 </div>
